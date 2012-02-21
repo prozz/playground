@@ -1,11 +1,14 @@
 // web server for serving our status page
 var fs = require('fs');
-var page = fs.readFileSync('./index.html');
-
 var handler = function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write(page);
-  response.end();
+	// async read per request for easier development, should be changed to single read and content cache later on
+	fs.readFile('./index.html', function(error, content) {
+		if (error) {
+			throw error;
+		}
+		response.writeHead(200, { 'Content-Type': 'text/html' });
+		response.end(content, 'utf-8');
+    });
 }
 
 require('http').createServer(handler).listen(6678);
@@ -15,8 +18,14 @@ console.log("Server running at http://localhost:6678");
 var io = require('socket.io').listen(6677);
 console.log("Status emiter running at http://localhost:6677")
 
+var randomBoolean = function() {
+	return Math.random() < 0.5 ? true : false;
+};
+
 var updateClients = function() {
-	io.sockets.emit("data", {x:"y"});
+	var fooVal = randomBoolean();
+	var barVal = randomBoolean();
+	io.sockets.emit("data", {foo: fooVal, bar: barVal});
 }
 
 setInterval(updateClients, 3000);

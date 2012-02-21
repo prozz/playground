@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <body>
-x
+<ul id="statuses">
+	<li id="foo">foo status: unknown</li>
+	<li id="bar">bar status: unknown</li>
+</ul>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://localhost:6677/socket.io/socket.io.js"></script>
 <script>
 var socket = io.connect('http://localhost:6677');
 
 socket.on('data', function(data) {
-	alert(data);
+	$("#statuses #foo").html("foo status: " + data.foo);
+	$("#statuses #bar").html("bar status: " + data.bar);
 })
 </script>
 </html>
