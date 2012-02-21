@@ -23,9 +23,8 @@ var randomBoolean = function() {
 };
 
 var updateClients = function() {
-	var fooVal = randomBoolean();
-	var barVal = randomBoolean();
-	io.sockets.emit("data", {foo: fooVal, bar: barVal});
+	io.sockets.emit("data", {server: "foo", status: randomBoolean()});
+	io.sockets.emit("data", {server: "bar", status: randomBoolean()});
 }
 
 setInterval(updateClients, 3000);
