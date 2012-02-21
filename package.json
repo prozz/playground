@@ -1,0 +1,13 @@
+{
+  "author": "prozz",
+  "name": "playground",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/prozz/playground.git"
+  },
+  "engines": {
+    "node": "~0.4.12"
+  },
+  "dependencies": { "socket.io": "0.8.7" }
+}
