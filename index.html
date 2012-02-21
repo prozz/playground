@@ -1,2 +1,14 @@
 <!DOCTYPE html>
-here we go!
+<html>
+<body>
+x
+</body>
+<script src="http://localhost:6677/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('http://localhost:6677');
+
+socket.on('data', function(data) {
+	alert(data);
+})
+</script>
+</html>
