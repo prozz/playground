@@ -9,5 +9,6 @@
   "engines": {
     "node": "~0.4.12"
   },
-  "dependencies": { "socket.io": "0.8.7" }
+  "dependencies": { "socket.io": "0.8.7" },
+  "scripts": {"start": "node app.js"}
 }
